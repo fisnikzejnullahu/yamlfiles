@@ -5,11 +5,11 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 3036
-      nodePort: 30036
-      targetPort: 8080
+    - port: 8080
+      nodePort: 30007
+      name: http
   selector:
-    app: orderservice
+    name: orderservice
 ---
 apiVersion: apps/v1
 kind: Deployment
