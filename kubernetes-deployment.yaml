@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderservice
+spec:
+  selector:
+    matchLabels:
+      app: orderservice
+  template:
+    metadata:
+      labels:
+        app: orderservice
+    spec:
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: orders
+          image: https://hub.docker.com/repository/docker/fisnikz/orders-service
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            # - name: DISABLE_TRACING
+            #   value: "1"
+            - name: DISABLE_PROFILER
+              value: "1"
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 1
+            successThreshold: 1
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orderservice
+spec:
+  type: NodePort
+  selector:
+    app: orderservice
+  ports:
+    port: 5000
+    targetPort: 8080
+    nodePort: 30007
+---
