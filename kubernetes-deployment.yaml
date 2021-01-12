@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: order-service
 spec:
-  type: NodePort
   ports:
     - port: 8080
-      nodePort: 30007
+      targetPort: 30007
   selector:
     name: orderservice
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
