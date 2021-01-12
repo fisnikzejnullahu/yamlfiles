@@ -44,6 +44,5 @@ spec:
     app: orderservice
   ports:
     - port: 5000
-    - targetPort: 8080
-    - nodePort: 30007
----
+    targetPort: 8080
+    nodePort: 30007
