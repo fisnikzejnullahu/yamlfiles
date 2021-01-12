@@ -43,7 +43,7 @@ spec:
   selector:
     app: orderservice
   ports:
-    port: 5000
+    - port: 5000
     targetPort: 8080
     nodePort: 30007
 ---
