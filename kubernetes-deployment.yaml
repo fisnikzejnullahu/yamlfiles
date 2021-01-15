@@ -31,6 +31,6 @@ spec:
     spec:
       containers:
       - name: orderservice
-        image: fisnikz/firstdockerapp
+        image: fisnikz/firstdockerapp:latest
         ports:
         - containerPort: 8080
